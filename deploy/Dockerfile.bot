@@ -1,0 +1,19 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Установка зависимостей
+RUN pip install --no-cache-dir aiogram==3.4.1 aiosqlite==0.20.0 aiohttp==3.9.3 python-dotenv==1.0.1
+
+# Копирование файлов
+COPY bot.py .
+COPY database.py .
+COPY xray_manager.py .
+COPY config.py .
+COPY requirements.txt .
+
+# Создание директории для данных
+RUN mkdir -p /app/data
+
+# Запуск бота
+CMD ["python", "bot.py"]

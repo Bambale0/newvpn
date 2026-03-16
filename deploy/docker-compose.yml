@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  3x-ui:
+    image: ghcr.io/mhsanaei/3x-ui:latest
+    container_name: 3x-ui
+    hostname: your-hostname
+    volumes:
+      - $PWD/db/:/etc/x-ui/
+      - $PWD/cert/:/root/cert/
+    environment:
+      XRAY_VMESS_AEAD_FORCED: "false"
+      XUI_LOG_LEVEL: "info"
+      XUI_DEBUG: "false"
+    network_mode: host
+    restart: unless-stopped
+    
+  vpn-bot:
+    build: 
+      context: ../
+      dockerfile: deploy/Dockerfile.bot
+    container_name: vpn-bot
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - ADMIN_IDS=${ADMIN_IDS}
+      - XRAY_PANEL_URL=http://localhost:2053
+      - XRAY_PANEL_USER=${UI_USER:-admin}
+      - XRAY_PANEL_PASS=${UI_PASS:-admin}
+      - DATABASE_PATH=/app/data/vpn_bot.db
+    volumes:
+      - bot-data:/app/data
+    restart: unless-stopped
+    depends_on:
+      - 3x-ui
+
+volumes:
+  bot-data:
