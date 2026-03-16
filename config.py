@@ -2,7 +2,7 @@ import os
 
 # Bot
 BOT_TOKEN = os.getenv("BOT_TOKEN", "8246070975:AAHRNShOYVvPlyw2VQVF4P2YmotMZOoG-ck")
-ADMIN_IDS = list(map(int, os.getenv("ADMIN_IDS", "123456789").split(",")))
+ADMIN_IDS = list(map(int, os.getenv("ADMIN_IDS", "6249622776,339795159").split(",")))
 
 # Webhook
 WEBHOOK_URL = os.getenv("WEBHOOK_URL", "https://test.chillcreative.ru")
@@ -20,5 +20,5 @@ DATABASE_PATH = os.getenv("DATABASE_PATH", "vpn_bot.db")
 PAYMENT_PROVIDERS = {
     "card": {"api_key": os.getenv("CARD_API_KEY", "")},
     "crypto": {"api_key": os.getenv("CRYPTO_API_KEY", "")},
-    "stars": {"token": BOT_TOKEN}
+    "stars": {"token": BOT_TOKEN},
 }
