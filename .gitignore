@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.log
+bot.log
+vpn_bot.db
+.env
+.DS_Store
+*.egg-info/
