@@ -626,10 +626,13 @@ async def delete_webhook():
 async def main():
     # Инициализация БД
     await db.init()
-    
+
+    # Удаляем webhook, если он установлен
+    await delete_webhook()
+
     # Запуск фоновой задачи проверки подписок
     asyncio.create_task(check_expired_subscriptions())
-    
+
     # Используем long polling
     await dp.start_polling(bot)
 

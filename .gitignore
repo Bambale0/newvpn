@@ -8,3 +8,4 @@ vpn_bot.db
 .env
 .DS_Store
 *.egg-info/
+venv
